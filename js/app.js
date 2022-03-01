@@ -49,13 +49,14 @@ const displaySearchOutput = datas => {
         div.innerHTML = `
         <div class="col">
         <div class="card">
-            <img src="${data.image}" class="card-img-top" alt="...">
+            <img src="${data.image}" class="card-img-top mt-2" alt="...">
             <div class="card-body">
                 <h5 class="card-title">${data.brand}</h5>
                 <p class="card-text">${data.phone_name}</p>
             </div>
-            <button onclick="loadPhoneDetail('${data.slug}')" class="btn btn-primary">Details</button>
-        </div>
+            <a href="#" class="mx-auto mb-3"><button onclick="loadPhoneDetail('${data.slug}')"
+            class="btn btn-primary">Details</button></a>
+            </div>
         `;
         searchResult.appendChild(div);
         toggleSpinner('none');
@@ -63,35 +64,35 @@ const displaySearchOutput = datas => {
 
     })
 }
-// const loadMeals = searchText => {
-//     url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`
-//     fetch(url)
-//         .then(res => res.json())
-//         .then(data => displayMeals(data.meals))
-// }
+const loadAllPhones = searchText => {
+    url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayAllPhones(data.data))
+}
 
-// const displayMeals = meals => {
-//     const conatiner = document.getElementById('search-result');
-//     conatiner.textContent = '';
-//     meals.forEach(meal => {
-//         const div = document.createElement('div');
-//         div.classList.add('col');
-//         div.innerHTML = `
-// <div class="col">
-// <div  onclick="loadMealDetail(${meal.idMeal})" class="col">
-// <div class="card">
-//     <img src="${meal.strMealThumb}" class="card-img-top" alt="...">
-//     <div class="card-body">
-//         <h5 class="card-title">${meal.strMeal}</h5>
-//         <p class="card-text">${meal.strInstructions.slice(0, 300)}</p>
-//     </div>
-// </div>
-// </div>
-//     `
-//         conatiner.appendChild(div);
-//     })
-// }
-// loadMeals('a');
+const displayAllPhones = phones => {
+    const conatiner = document.getElementById('search-result');
+    conatiner.textContent = '';
+    phones.forEach(data => {
+        const div = document.createElement('div');
+        div.classList.add('col');
+        div.innerHTML = `
+        <div class="col">
+        <div class="card">
+            <img src="${data.image}" class="card-img-top mt-2" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">${data.brand}</h5>
+                <p class="card-text fs-5">${data.phone_name}</p>
+            </div>
+            <a href="#" class="mx-auto mb-3"><button onclick="loadPhoneDetail('${data.slug}')"
+            class="btn btn-primary">Details</button></a>
+            </div>
+    `
+        conatiner.appendChild(div);
+    })
+}
+loadAllPhones('a');
 
 const loadPhoneDetail = id => {
     console.log(id);
@@ -101,64 +102,64 @@ const loadPhoneDetail = id => {
         .then(data => displayPhoneDetail(data.data))
 }
 const displayPhoneDetail = data => {
-    // console.log(data);
-    // console.log(data.mainFeatures.sensors[0]);
-    // console.log(data.image);
-    // console.log(data.mainFeatures.storage);
-    // console.log(data.mainFeatures.displaySize);
-    // console.log(data.mainFeatures.chipSet);
-    // console.log(data.mainFeatures.memory);
     const phoneDetails = document.getElementById('phone-details');
     phoneDetails.textContent = '';
     const div = document.createElement('div');
     div.classList.add('card');
     if (!data.releaseDate) {
         div.innerHTML = `
-        <img src="${data.image}" class="card-img-top w-50 mx-auto" alt="...">
+        <img src="${data.image}" class="card-img-top w-50 mx-auto mt-2" alt="...">
         <div class="card-body">
-            <h5 class="card-title">${data.brand}</h5>
-            <p class="card-text">${data.name}</p>
-            <p class="card-text">No release date</p>
-            <p class="card-text"> <p>Storage: ${data.mainFeatures.storage}</p>
-            <p>Display-Size: ${data.mainFeatures.displaySize}</p>
-            <p>Chipset: ${data.mainFeatures.chipSet}</p>
-            <p> Memory: ${data.mainFeatures.memory}</p>
-            <p> Sensor: ${data.mainFeatures.sensors}</p>
-            </p>
-        </div>
+        <h4 class="card-title fw-bolder">${data.brand}</h4>
+        <p class="card-text fw-bolder fs-4">${data.name}</p>
+        <p class="card-text fw-bolder">${data.releaseDate}</p>
+        <p class="card-text">
+        <h5>Main Features</h5>
+        <p><span class="fw-bolder">Storage:</span> ${data.mainFeatures.storage}</p>
+        <p><span class="fw-bolder">Display-Size:</span> ${data.mainFeatures.displaySize}</p>
+        <p><span class="fw-bolder">Chipset:</span> ${data.mainFeatures.chipSet}</p>
+        <p><span class="fw-bolder">Memory:</span> ${data.mainFeatures.memory}</p>
+        <h5>Sensor</h5>
+        <p><span class="fw-bolder">Sensor:</span> ${data.mainFeatures.sensors}</p>
+        <h5>Others</h5>
+        <p><span class="fw-bolder">WLAN:</span> ${data.others?.WLAN ? data.others?.WLAN : 'not found'}</p>
+        <p><span class="fw-bolder">BLUETOOTH:</span> ${data.others?.Bluetooth ? data.others?.Bluetooth : 'not found'}
+        </p>
+        <p><span class="fw-bolder">GPS:</span> ${data.others?.GPS ? data.others?.GPS : 'not found'}</p>
+        <p><span class="fw-bolder">NFC:</span> ${data.others?.NFC ? data.others?.NFC : 'not found'}</p>
+        <p><span class="fw-bolder">RADIO:</span>${data.others?.Radio ? data.others?.Radio : 'not found'}</p>
+        <p><span class="fw-bolder">USB:</span> ${data.others?.USB ? data.others?.USB : 'not found'}</p>
+        </p>
+    </div>
         `;
         phoneDetails.appendChild(div);
     }
     else {
         div.innerHTML = `
-        <img src="${data.image}" class="card-img-top w-50 mx-auto" alt="...">
+        <img src="${data.image}" class="card-img-top w-50 mx-auto mt-2" alt="...">
         <div class="card-body">
-            <h5 class="card-title">${data.brand}</h5>
-            <p class="card-text">${data.name}</p>
-            <p class="card-text">${data.releaseDate}</p>
-            <p class="card-text"> <p>Storage: ${data.mainFeatures.storage}</p>
-            <p>Display-Size: ${data.mainFeatures.displaySize}</p>
-            <p>Chipset: ${data.mainFeatures.chipSet}</p>
-            <p> Memory: ${data.mainFeatures.memory}</p>
-            <p> Sensor: ${data.mainFeatures.sensors}</p>
-            </p>
-        </div>
+        <h4 class="card-title fw-bolder">${data.brand}</h4>
+        <p class="card-text fw-bolder fs-4">${data.name}</p>
+        <p class="card-text fw-bolder">${data.releaseDate}</p>
+        <p class="card-text">
+        <h5>Main Features</h5>
+        <p><span class="fw-bolder">Storage:</span> ${data.mainFeatures.storage}</p>
+        <p><span class="fw-bolder">Display-Size:</span> ${data.mainFeatures.displaySize}</p>
+        <p><span class="fw-bolder">Chipset:</span> ${data.mainFeatures.chipSet}</p>
+        <p><span class="fw-bolder">Memory:</span> ${data.mainFeatures.memory}</p>
+        <h5>Sensor</h5>
+        <p><span class="fw-bolder">Sensor:</span> ${data.mainFeatures.sensors}</p>
+        <h5>Others</h5>
+        <p><span class="fw-bolder">WLAN:</span> ${data.others?.WLAN ? data.others?.WLAN : 'not found'}</p>
+        <p><span class="fw-bolder">BLUETOOTH:</span> ${data.others?.Bluetooth ? data.others?.Bluetooth : 'not found'}
+        </p>
+        <p><span class="fw-bolder">GPS:</span> ${data.others?.GPS ? data.others?.GPS : 'not found'}</p>
+        <p><span class="fw-bolder">NFC:</span> ${data.others?.NFC ? data.others?.NFC : 'not found'}</p>
+        <p><span class="fw-bolder">RADIO:</span>${data.others?.Radio ? data.others?.Radio : 'not found'}</p>
+        <p><span class="fw-bolder">USB:</span> ${data.others?.USB ? data.others?.USB : 'not found'}</p>
+        </p>
+    </div>
         `;
         phoneDetails.appendChild(div);
     }
-    // console.log(data.mainFeatures);
-    // const phoneDetails = document.getElementById('phone-details');
-    // phoneDetails.textContent = '';
-    // const div = document.createElement('div');
-    // div.classList.add('card');
-    // div.innerHTML = `
-    //     <img src="${data.mainFeatures.storage}" class="card-img-top w-50 mx-auto" alt="...">
-    //     <div class="card-body">
-    //         <h5 class="card-title">${data.brand}</h5>
-    //         <p class="card-text">${data.name}</p>
-    //         <p class="card-text">${data.releaseDate}</p>
-    //         <p class="card-text">${data.sensors}</p>
-    //     </div>
-    //     `;
-    // phoneDetails.appendChild(div);
 }
