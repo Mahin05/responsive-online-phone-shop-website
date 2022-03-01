@@ -13,6 +13,8 @@ const searchPhone = () => {
     const search = document.getElementById('search-field');
     const searchText = search.value;
     search.value = '';
+    const phoneDetails = document.getElementById('phone-details');
+    phoneDetails.textContent = '';
     // display spinner
     toggleSpinner('block');
     toggleSearchResult('none');
@@ -20,6 +22,8 @@ const searchPhone = () => {
         // displayError();
         document.getElementById('results-error').style.display = 'block';
         toggleSpinner('none');
+        const phoneDetails = document.getElementById('phone-details');
+        phoneDetails.textContent = '';
     }
     // console.log(searchText);
     else {
@@ -121,6 +125,7 @@ const displayPhoneDetail = data => {
             <p>Display-Size: ${data.mainFeatures.displaySize}</p>
             <p>Chipset: ${data.mainFeatures.chipSet}</p>
             <p> Memory: ${data.mainFeatures.memory}</p>
+            <p> Sensor: ${data.mainFeatures.sensors}</p>
             </p>
         </div>
         `;
@@ -137,6 +142,7 @@ const displayPhoneDetail = data => {
             <p>Display-Size: ${data.mainFeatures.displaySize}</p>
             <p>Chipset: ${data.mainFeatures.chipSet}</p>
             <p> Memory: ${data.mainFeatures.memory}</p>
+            <p> Sensor: ${data.mainFeatures.sensors}</p>
             </p>
         </div>
         `;
