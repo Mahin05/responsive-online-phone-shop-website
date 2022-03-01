@@ -9,25 +9,51 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
+        /* media query for small devices */
+        @media screen and (min-width: 315px) and (max-width:496px) {
+            #phone-details {
+                width: 300px;
+                font-size: 15px;
+            }
+
+        }
+
+        /* media query for large devices */
+        @media screen and (min-width: 992px) and (max-width:1312px) {
+            #phone-details {
+                width: 600px;
+            }
+
+            .input-grp-set {
+                width: 60%;
+            }
+        }
+
+        /* spinner style */
         #spinner {
             display: none;
             color: rgb(255, 115, 0);
         }
 
+        /* header text style */
         .text-color {
-            margin-top: 20px;
-            color: brown;
+            color: #1e1e27;
+            font-weight: 700;
         }
 
+        /* header text style */
         .text-color2 {
-            color: crimson;
+            color: #fe4c50;
+            font-weight: 700;
         }
 
+        /* body color style */
         .body-color {
-            background-color: rgba(240, 255, 255, 0.349);
+            background-color: rgba(175, 238, 238, 0.041);
             margin-bottom: 100px;
         }
 
+        /* result error style */
         #results-error {
             margin-top: 180px;
         }
@@ -36,34 +62,37 @@
 
 <body class="body-color container">
     <h1 class="text-center text-color mt-5">Phone <span class="text-color2">Shop</span></h1>
-    <div class="input-group mb-3 w-50 mx-auto">
+    <div class="input-group mb-3 mx-auto container input-grp-set">
         <input id="search-field" type="text" class="form-control mt-3" placeholder="search your phone here"
             aria-label="Recipient's username" aria-describedby="button-addon2">
         <button onclick="searchPhone()" class="btn btn-outline-secondary mt-3 bg-primary text-white" type="button"
             id="button-seacrh">search</button>
     </div>
-    <!-- spinner -->
+    <!-- spinner start -->
     <div class="text-center my-5" id="spinner">
         <div class="spinner-border" role="status">
             <span class="visually-hidden">Loading...</span>
         </div>
     </div>
-    <!-- no result error -->
+    <!-- spinner end -->
+
+    <!-- not found result error start -->
     <div id="results-error">
         <h2 id="results-error" class="text-center text-danger">No Phone Found!!</h2>
     </div>
-    <!-- 404 error result -->
-    <div id="errors" class="text-center mx-auto text-danger mt-5">
-    </div>
-    <!-- single phone detail -->
-    <div id="phone-details" class="w-50 mx-auto mb-5">
+    <!-- not found result error end -->
+
+    <!-- individual phone detail start-->
+    <div id="phone-details" class="mx-auto mb-5">
 
     </div>
+    <!-- individual phone detail end-->
+
     <!-- phone search result -->
     <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4 container">
 
     </div>
-    <!-- example -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>

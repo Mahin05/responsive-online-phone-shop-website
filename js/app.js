@@ -1,13 +1,15 @@
+// no phone found result error getting
 document.getElementById('results-error').style.display = 'none';
+
 // spinner
 const toggleSpinner = displayStyle => {
     document.getElementById('spinner').style.display = displayStyle;
 }
-// to skip loaded data while showing spinner
 const toggleSearchResult = displayStyle => {
     document.getElementById('search-result').style.display = displayStyle;
 }
 
+// phone search load
 const searchPhone = () => {
     document.getElementById('results-error').style.display = 'none';
     const search = document.getElementById('search-field');
@@ -33,6 +35,8 @@ const searchPhone = () => {
             .then(data => displaySearchOutput(data.data))
     }
 }
+
+// searched result
 const displaySearchOutput = datas => {
     console.log(datas);
     const searchLimit = datas.slice(0, 20);
@@ -47,12 +51,11 @@ const displaySearchOutput = datas => {
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML = `
-        <div class="col">
         <div class="card">
-            <img src="${data.image}" class="card-img-top mt-2" alt="...">
+            <img src="${data.image}" class="card-img-top mt-2 rounded mx-auto" style="width: 60%;"alt="...">
             <div class="card-body">
                 <h5 class="card-title">${data.brand}</h5>
-                <p class="card-text">${data.phone_name}</p>
+                <p class="card-text fs-5">${data.phone_name}</p>
             </div>
             <a href="#" class="mx-auto mb-3"><button onclick="loadPhoneDetail('${data.slug}')"
             class="btn btn-primary">Details</button></a>
@@ -64,6 +67,8 @@ const displaySearchOutput = datas => {
 
     })
 }
+
+// load all phones when page loads
 const loadAllPhones = searchText => {
     url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
     fetch(url)
@@ -71,6 +76,7 @@ const loadAllPhones = searchText => {
         .then(data => displayAllPhones(data.data))
 }
 
+//show all phones when page loads
 const displayAllPhones = phones => {
     const conatiner = document.getElementById('search-result');
     conatiner.textContent = '';
@@ -78,9 +84,8 @@ const displayAllPhones = phones => {
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML = `
-        <div class="col">
         <div class="card">
-            <img src="${data.image}" class="card-img-top mt-2" alt="...">
+            <img src="${data.image}" class="card-img-top mt-2 rounded mx-auto" style="width: 60%;"alt="...">
             <div class="card-body">
                 <h5 class="card-title">${data.brand}</h5>
                 <p class="card-text fs-5">${data.phone_name}</p>
@@ -94,6 +99,7 @@ const displayAllPhones = phones => {
 }
 loadAllPhones('a');
 
+// load individual phone details
 const loadPhoneDetail = id => {
     console.log(id);
     const url = `https://openapi.programming-hero.com/api/phone/${id}`;
@@ -101,6 +107,8 @@ const loadPhoneDetail = id => {
         .then(res => res.json())
         .then(data => displayPhoneDetail(data.data))
 }
+
+// show individual phone details
 const displayPhoneDetail = data => {
     const phoneDetails = document.getElementById('phone-details');
     phoneDetails.textContent = '';
@@ -108,7 +116,7 @@ const displayPhoneDetail = data => {
     div.classList.add('card');
     if (!data.releaseDate) {
         div.innerHTML = `
-        <img src="${data.image}" class="card-img-top w-50 mx-auto mt-2" alt="...">
+        <img src="${data.image}" class="card-img-top mx-auto mt-2" style="width: 30%;" alt="...">
         <div class="card-body">
         <h4 class="card-title fw-bolder">${data.brand}</h4>
         <p class="card-text fw-bolder fs-4">${data.name}</p>
@@ -136,7 +144,7 @@ const displayPhoneDetail = data => {
     }
     else {
         div.innerHTML = `
-        <img src="${data.image}" class="card-img-top w-50 mx-auto mt-2" alt="...">
+        <img src="${data.image}" class="card-img-top mx-auto mt-2" style="width: 30%;" alt="...">
         <div class="card-body">
         <h4 class="card-title fw-bolder">${data.brand}</h4>
         <p class="card-text fw-bolder fs-4">${data.name}</p>
