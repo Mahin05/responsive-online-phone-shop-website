@@ -15,20 +15,18 @@ const searchPhone = () => {
     const search = document.getElementById('search-field');
     const searchText = search.value;
     search.value = '';
-    const phoneDetails = document.getElementById('phone-details');
-    phoneDetails.textContent = '';
     // display spinner
     toggleSpinner('block');
     toggleSearchResult('none');
-    if (searchText === '') {
+    if (searchText == '') {
         // displayError();
         document.getElementById('results-error').style.display = 'block';
         toggleSpinner('none');
-        const phoneDetails = document.getElementById('phone-details');
-        phoneDetails.textContent = '';
     }
     // console.log(searchText);
     else {
+        const phoneDetails = document.getElementById('phone-details');
+        phoneDetails.textContent = '';
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
         fetch(url)
             .then(res => res.json())
@@ -38,16 +36,15 @@ const searchPhone = () => {
 
 // searched result
 const displaySearchOutput = datas => {
-    console.log(datas);
+    // console.log(datas);
     const searchLimit = datas.slice(0, 20);
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
-    if (!searchLimit) {
+    if (!datas.brand) {
         document.getElementById('results-error').style.display = 'block';
         toggleSpinner('none');
     }
     searchLimit?.forEach(data => {
-        // console.log(data.slice());
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML = `
@@ -64,7 +61,7 @@ const displaySearchOutput = datas => {
         searchResult.appendChild(div);
         toggleSpinner('none');
         toggleSearchResult('flex');
-
+        document.getElementById('results-error').style.display = 'none';
     })
 }
 
