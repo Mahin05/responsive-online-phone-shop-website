@@ -22,6 +22,8 @@ const searchPhone = () => {
         // displayError();
         document.getElementById('results-error').style.display = 'block';
         toggleSpinner('none');
+        const phoneDetails = document.getElementById('phone-details');
+        phoneDetails.textContent = '';
     }
     // console.log(searchText);
     else {
