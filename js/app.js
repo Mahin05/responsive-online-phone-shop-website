@@ -18,7 +18,7 @@ const searchPhone = () => {
     // display spinner
     toggleSpinner('block');
     toggleSearchResult('none');
-    if (searchText == '') {
+    if (searchText === '') {
         // displayError();
         document.getElementById('results-error').style.display = 'block';
         toggleSpinner('none');
@@ -31,21 +31,19 @@ const searchPhone = () => {
         fetch(url)
             .then(res => res.json())
             .then(data => displaySearchOutput(data.data))
-        // .catch(error => displayError(error));
-        // document.getElementById('results-error').style.display = 'none';
-
     }
 }
 const displaySearchOutput = datas => {
     console.log(datas);
+    const searchLimit = datas.slice(0, 20);
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
-    if (!datas) {
+    if (!searchLimit) {
         document.getElementById('results-error').style.display = 'block';
         toggleSpinner('none');
     }
-    datas?.forEach(data => {
-        console.log(data);
+    searchLimit?.forEach(data => {
+        // console.log(data.slice());
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML = `
