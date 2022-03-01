@@ -102,12 +102,34 @@ const displayPhoneDetail = data => {
     console.log(data);
     console.log(data.mainFeatures.sensors[0]);
     console.log(data.image);
+    console.log(data.mainFeatures.storage);
+    console.log(data.mainFeatures.displaySize);
+    console.log(data.mainFeatures.chipSet);
+    console.log(data.mainFeatures.memory);
     if (!data.releaseDate) {
         console.log("No release date");
     }
     else {
         console.log(data.releaseDate);
     }
+    const phoneDetails = document.getElementById('phone-details');
+    phoneDetails.textContent = '';
+    const div = document.createElement('div');
+    div.classList.add('card');
+    div.innerHTML = `
+        <img src="${data.image}" class="card-img-top w-50 mx-auto" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">${data.brand}</h5>
+            <p class="card-text">${data.name}</p>
+            <p class="card-text">${data.releaseDate}</p>
+            <p class="card-text"> <p>Storage: ${data.mainFeatures.storage}</p>
+            <p>Display-Size: ${data.mainFeatures.displaySize}</p>
+            <p>Chipset: ${data.mainFeatures.chipSet}</p>
+            <p> Memory: ${data.mainFeatures.memory}</p>
+            </p>
+        </div>
+        `;
+    phoneDetails.appendChild(div);
     // console.log(data.mainFeatures);
     // const phoneDetails = document.getElementById('phone-details');
     // phoneDetails.textContent = '';
