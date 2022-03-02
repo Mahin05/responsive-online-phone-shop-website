@@ -9,6 +9,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
+        /*-----google font import---------  */
+        @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@800&family=Oswald:wght@500&family=Overpass:wght@200;300&family=Pacifico&family=Poppins:wght@400;500&family=Roboto+Mono:wght@500&display=swap');
+
+        /*-----google font import---------  */
+
+        /* body text font set */
+        body {
+            font-family: Poppins;
+        }
+
+        /* body text font set */
+
         /* media query for small devices */
         @media screen and (min-width: 315px) and (max-width:496px) {
             #phone-details {
@@ -50,48 +62,118 @@
         /* body color style */
         .body-color {
             background-color: rgba(175, 238, 238, 0.041);
-            margin-bottom: 100px;
         }
 
         /* result error style */
         #results-error {
-            margin-top: 180px;
+            margin-top: 150px;
+            margin-bottom: 150px;
+        }
+
+        /*------------- navbar-name--------- */
+        .name-nav-item-style {
+            font-family: Poppins;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .li-nav-item-style {
+            margin-right: 26px;
+            font-family: Poppins;
+            font-weight: 600;
+            font-size: 16px;
+            color: #3E3E3E;
+        }
+
+        /*------------- navbar-name--------- */
+        footer {
+            background-color: black;
+            margin-top: 60px;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        footer a {
+            text-decoration: none;
         }
     </style>
 </head>
-
-<body class="body-color container">
-    <h1 class="text-center text-color mt-5">Phone <span class="text-color2">Shop</span></h1>
-    <div class="input-group mb-3 mx-auto container input-grp-set">
-        <input id="search-field" type="text" class="form-control mt-3" placeholder="search your phone here"
-            aria-label="Recipient's username" aria-describedby="button-addon2">
-        <button onclick="searchPhone()" class="btn btn-outline-secondary mt-3 bg-primary text-white" type="button"
-            id="button-seacrh">search</button>
-    </div>
-    <!-- spinner start -->
-    <div class="text-center my-5" id="spinner">
-        <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
+<header>
+    <!-- navbar start  -->
+    <nav class="navbar navbar-expand-lg navbar-light mt-3">
+        <div class="container">
+            <a class="navbar-brand name-nav-item-style text-color" href="#">PHONE<span
+                    class="text-color2">SHOP</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item li-nav-item-style">
+                        <a class="nav-link active" aria-current="page"
+                            href="https://online-phone-shop.netlify.app/">Home</a>
+                    </li>
+                    <li class="nav-item li-nav-item-style">
+                        <a class="nav-link active" href="https://online-phone-shop.netlify.app/">About Us</a>
+                    </li>
+                    <li class="nav-item li-nav-item-style">
+                        <a class="nav-link active" href="https://online-phone-shop.netlify.app/">Contact</a>
+                    </li>
+                    <li class="nav-item li-nav-item-style">
+                        <a class="nav-link active" href="https://online-phone-shop.netlify.app/">Subscribe</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <!-- spinner end -->
+    </nav>
+    <!-- navbar end  -->
+</header>
 
-    <!-- not found result error start -->
-    <div id="results-error">
-        <h2 id="results-error" class="text-center text-danger">No Phone Found!!</h2>
-    </div>
-    <!-- not found result error end -->
+<body class="body-color">
+    <main class="container">
+        <h1 class="text-center text-color mt-5">Phone <span class="text-color2">Shop</span></h1>
+        <div class="input-group mb-3 mx-auto container input-grp-set">
+            <input id="search-field" type="text" class="form-control mt-3" placeholder="search your phone here"
+                aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button onclick="searchPhone()" class="btn btn-outline-secondary mt-3 bg-primary text-white" type="button"
+                id="button-seacrh">search</button>
+        </div>
+        <!-- spinner start -->
+        <div class="text-center my-5" id="spinner">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        <!-- spinner end -->
 
-    <!-- individual phone detail start-->
-    <div id="phone-details" class="mx-auto mb-5">
+        <!-- not found result error start -->
+        <div id="results-error">
+            <h2 id="results-error" class="text-center text-danger">No Phone Found!!</h2>
+        </div>
+        <!-- not found result error end -->
 
-    </div>
-    <!-- individual phone detail end-->
+        <!-- individual phone detail start-->
+        <div id="phone-details" class="mx-auto mb-5">
 
-    <!-- phone search result -->
-    <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4 container">
+        </div>
+        <!-- individual phone detail end-->
 
-    </div>
+        <!-- phone search result -->
+        <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4 container">
+
+        </div>
+    </main>
+    <!-- footer start  -->
+    <footer>
+        <section class="justify-content-between footer-style text-center mt-3">
+            <a href="https://online-phone-shop.netlify.app/" class="text-white" target="_blank">© 2022
+                https://online-phone-shop.netlify.app/</a>
+            <p class="text-white">Developed by Mahin</p>
+        </section>
+    </footer>
+    <!-- footer end  -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
