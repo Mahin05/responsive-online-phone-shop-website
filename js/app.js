@@ -113,13 +113,12 @@ const displayPhoneDetail = data => {
     phoneDetails.textContent = '';
     const div = document.createElement('div');
     div.classList.add('card');
-    if (!data.releaseDate) {
-        div.innerHTML = `
+    div.innerHTML = `
         <img src="${data.image}" class="card-img-top mx-auto mt-2" style="width: 30%;" alt="...">
         <div class="card-body">
         <h4 class="card-title fw-bolder">${data.brand}</h4>
         <p class="card-text fw-bolder fs-4">${data.name}</p>
-        <p class="card-text fw-bolder">No release date found</p>
+        <p class="card-text fw-bolder">${data.releaseDate ? data.releaseDate : 'No release date found'}</p>
         <p class="card-text">
         <h5>Main Features</h5>
         <p><span class="fw-bolder">Storage:</span> ${data.mainFeatures.storage}</p>
@@ -139,34 +138,5 @@ const displayPhoneDetail = data => {
         </p>
     </div>
         `;
-        phoneDetails.appendChild(div);
-    }
-    else {
-        div.innerHTML = `
-        <img src="${data.image}" class="card-img-top mx-auto mt-2" style="width: 30%;" alt="...">
-        <div class="card-body">
-        <h4 class="card-title fw-bolder">${data.brand}</h4>
-        <p class="card-text fw-bolder fs-4">${data.name}</p>
-        <p class="card-text fw-bolder">${data.releaseDate}</p>
-        <p class="card-text">
-        <h5>Main Features</h5>
-        <p><span class="fw-bolder">Storage:</span> ${data.mainFeatures.storage}</p>
-        <p><span class="fw-bolder">Display-Size:</span> ${data.mainFeatures.displaySize}</p>
-        <p><span class="fw-bolder">Chipset:</span> ${data.mainFeatures.chipSet}</p>
-        <p><span class="fw-bolder">Memory:</span> ${data.mainFeatures.memory}</p>
-        <h5>Sensor</h5>
-        <p><span class="fw-bolder">Sensor:</span> ${data.mainFeatures.sensors}</p>
-        <h5>Others</h5>
-        <p><span class="fw-bolder">WLAN:</span> ${data.others?.WLAN ? data.others?.WLAN : 'not found'}</p>
-        <p><span class="fw-bolder">BLUETOOTH:</span> ${data.others?.Bluetooth ? data.others?.Bluetooth : 'not found'}
-        </p>
-        <p><span class="fw-bolder">GPS:</span> ${data.others?.GPS ? data.others?.GPS : 'not found'}</p>
-        <p><span class="fw-bolder">NFC:</span> ${data.others?.NFC ? data.others?.NFC : 'not found'}</p>
-        <p><span class="fw-bolder">RADIO:</span>${data.others?.Radio ? data.others?.Radio : 'not found'}</p>
-        <p><span class="fw-bolder">USB:</span> ${data.others?.USB ? data.others?.USB : 'not found'}</p>
-        </p>
-    </div>
-        `;
-        phoneDetails.appendChild(div);
-    }
+    phoneDetails.appendChild(div);
 }
